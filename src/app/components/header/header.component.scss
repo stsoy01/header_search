@@ -32,9 +32,15 @@
       padding-left: 30px;
     }
 
-    [class~='header__linkContainer__link']:last-of-type {
+    [class~="header__linkContainer__link"]:last-of-type {
       margin-right: 56px;
     }
   }
-}
 
+  &__expand__input {
+    display: block;
+    width: 100%;
+    border: none;
+    outline: none;
+  }
+}

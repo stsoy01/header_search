@@ -8,6 +8,10 @@ ul, li, ol {
   list-style-type: none;
 }
 
+a:hover {
+  cursor: pointer;
+}
+
 :root {
   --header_bg_color: #1074CC;
   --main_text_color: #fff

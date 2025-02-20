@@ -13,7 +13,9 @@
 
     <app-expand-input (isNgContentDisplayed)="isContentShowed = $event">
       <ng-container *ngIf="isContentShowed">
-        <input type="text" style="display: block; width: 100%" />
+        <div >
+          <input class="header__expand__input" type="text" />
+        </div>
       </ng-container>
     </app-expand-input>
   </nav>

@@ -31,10 +31,12 @@ export class ExpandInputComponent {
 
   @ViewChildren('div') private expandContainer!: QueryList<ElementRef>;
 
-  @HostListener('document:click', ['$event']) private onElementClick(): void {
+  @HostListener('click', ['$event']) private onElementClick(): void {
     const [, expandElement] = this.expandContainer.toArray();
     const isInside = !!this.el.nativeElement.contains(event?.target);
 
+    console.log();
+    
     this.isNgContentDisplayed.emit(isInside)
     this.renderer.setStyle(expandElement.nativeElement, 'width', isInside ? '500px' : '0px')
   }

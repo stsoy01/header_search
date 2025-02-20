@@ -1,8 +1,8 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {RouterLink} from '@angular/router';
-import {Observable} from 'rxjs';
-import {AsyncPipe, NgClass, NgIf, NgStyle, NgTemplateOutlet} from '@angular/common';
-import {ExpandInputComponent} from '../expand-input/expand-input.component';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AsyncPipe, NgClass, NgIf, NgStyle, NgTemplateOutlet } from '@angular/common';
+import { ExpandInputComponent } from '../expand-input/expand-input.component';
 
 interface headerNavigationItemInterface {
   linkName: string;
@@ -30,11 +30,11 @@ export class HeaderComponent implements OnInit {
   public headerNavigationList$: Observable<headerNavigationItemInterface[]> = new Observable((subscriber) => {
     subscriber.next(
       [
-        {linkName: 'Ссылки', iconUrl: '/assets/img/link.png'},
-        {linkName: 'Контакты', iconUrl: '/assets/img/contacts.png'},
-        {linkName: 'Теги', iconUrl: '/assets/img/tag.png'},
-        {linkName: 'Избранное', iconUrl: '/assets/img/favorites.png'},
-        {linkName: 'Посещения', iconUrl: '/assets/img/history.png'},
+        { linkName: 'Ссылки', iconUrl: '/assets/img/link.png' },
+        { linkName: 'Контакты', iconUrl: '/assets/img/contacts.png' },
+        { linkName: 'Теги', iconUrl: '/assets/img/tag.png' },
+        { linkName: 'Избранное', iconUrl: '/assets/img/favorites.png' },
+        { linkName: 'Посещения', iconUrl: '/assets/img/history.png' },
       ])
   })
 
@@ -42,5 +42,4 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
