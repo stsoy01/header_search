@@ -1,0 +1,40 @@
+// Mixins
+@mixin flexBoxSetting() {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header {
+  @include flexBoxSetting;
+  width: 100%;
+  height: 56px;
+  padding: 0 16px;
+  background-color: var(--header_bg_color);
+  color: var(--main_text_color);
+
+  &__mainLink {
+    display: inline-block;
+    width: 150px;
+    height: 56px;
+    background-image: url("../../../assets/img/mainLogo.png");
+    background-repeat: no-repeat;
+  }
+
+  &__linkContainer {
+    @include flexBoxSetting;
+    position: relative;
+
+    &__link {
+      margin-right: 28px;
+      background-repeat: no-repeat;
+      background-size: contain;
+      padding-left: 30px;
+    }
+
+    [class~='header__linkContainer__link']:last-of-type {
+      margin-right: 56px;
+    }
+  }
+}
+

@@ -1,0 +1,31 @@
+<div class="header">
+  <a [routerLink]="''" class="header__mainLink"></a>
+
+  <nav class="header__linkContainer">
+    @for (link of headerNavigationList$ | async; track link) {
+    <ng-container
+      *ngTemplateOutlet="
+        linkTemplate;
+        context: { link, class: 'header__linkContainer__link' }
+      "
+    ></ng-container>
+    }
+
+    <app-expand-input (isNgContentDisplayed)="isContentShowed = $event">
+      <ng-container *ngIf="isContentShowed">
+        <input type="text" style="display: block; width: 100%" />
+      </ng-container>
+    </app-expand-input>
+  </nav>
+</div>
+
+<ng-template #linkTemplate let-linkItem="link" let-className="class">
+  <li
+    [ngClass]="className"
+    [ngStyle]="{ 'background-image': 'url(' + linkItem.iconUrl + ')' }"
+  >
+    <a [routerLink]="">
+      {{ linkItem.linkName }}
+    </a>
+  </li>
+</ng-template>

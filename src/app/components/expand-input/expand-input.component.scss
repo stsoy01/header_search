@@ -1,0 +1,23 @@
+.seacrh {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: 50% 50% no-repeat url("../../../assets/img/search.png");
+  right: 14px;
+  top: 0;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.stub {
+  position: absolute;
+  width: 0;
+  background: rgba(167, 167, 167, 0.549);
+  height: 20px;
+  top: 0;
+  right: 15px;
+  transition: 0.3s ease-out;
+  z-index: 1000;
+}
