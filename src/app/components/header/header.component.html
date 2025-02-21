@@ -1,33 +1,45 @@
 <div class="header">
-  <a [routerLink]="''" class="header__mainLink"></a>
+    <a [routerLink]="''" class="header__mainLink"></a>
 
-  <nav class="header__linkContainer">
-    @for (link of headerNavigationList$ | async; track link) {
-    <ng-container
-      *ngTemplateOutlet="
+    <nav class="header__linkContainer">
+        @for (link of headerNavigationList$ | async; track link) {
+            <ng-container
+                    *ngTemplateOutlet="
         linkTemplate;
         context: { link, class: 'header__linkContainer__link' }
       "
-    ></ng-container>
-    }
+            ></ng-container>
+        }
 
-    <app-expand-input (isNgContentDisplayed)="isContentShowed = $event">
-      <ng-container *ngIf="isContentShowed">
-        <div >
-          <input class="header__expand__input" type="text" />
-        </div>
-      </ng-container>
-    </app-expand-input>
-  </nav>
+        <app-expand-input (isNgContentDisplayed)="isContentShowed = $event" >
+            <ng-container *ngIf="isContentShowed">
+                <input class="header__expand__input" type="text" (click)="changeService()"/>
+                <ng-container *ngIf="expandService.asd">
+                    <div class="header__expand__tagContainer"></div>
+                </ng-container>
+            </ng-container>
+        </app-expand-input>
+
+
+    </nav>
+
+    <div class="header__rightBox">
+        <button class="header__rightBox__notification"></button>
+        <span *ngIf="(userData$ | async)?.notification_count">{{ (userData$ | async)?.notification_count }}</span>
+        <button [ngStyle]="{'background-image': 'url(' + (userData$ | async)?.avatar_url + ')'}"
+                class="header__rightBox__account"></button>
+    </div>
 </div>
 
 <ng-template #linkTemplate let-linkItem="link" let-className="class">
-  <li
-    [ngClass]="className"
-    [ngStyle]="{ 'background-image': 'url(' + linkItem.iconUrl + ')' }"
-  >
-    <a [routerLink]="">
-      {{ linkItem.linkName }}
-    </a>
-  </li>
+    <li
+            [ngClass]="className"
+            [ngStyle]="{'background-image': 'url(' + linkItem.iconUrl + ')'}"
+    >
+        <a [routerLink]="">
+            {{ linkItem.linkName }}
+        </a>
+    </li>
 </ng-template>
+
+
