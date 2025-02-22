@@ -1,7 +1,17 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    OnInit
+} from '@angular/core';
 import {RouterLink} from '@angular/router';
-import { Observable} from 'rxjs';
-import {AsyncPipe, NgClass, NgIf, NgStyle, NgTemplateOutlet} from '@angular/common';
+import {Observable} from 'rxjs';
+import {
+    AsyncPipe,
+    NgClass,
+    NgIf,
+    NgStyle,
+    NgTemplateOutlet
+} from '@angular/common';
 import {ExpandInputComponent} from '../expand-input/expand-input.component';
 import {ExpandInputService} from "../expand-input/expand-input.service";
 
@@ -59,6 +69,12 @@ export class HeaderComponent implements OnInit {
             last_name: "Renner",
             notification_count: 11
         })
+    })
+
+    public tags$: Observable<string[]> = new Observable((subscriber) => {
+        subscriber.next(
+            ['закре пить теги', 'кнопка', 'приложение', 'форма', 'тестовое поле', 'выпадающий список',]
+        )
     })
 
     constructor(public expandService: ExpandInputService) {

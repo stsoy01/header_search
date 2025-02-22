@@ -1,21 +1,33 @@
-<div class="header">
+<header class="header">
     <a [routerLink]="''" class="header__mainLink"></a>
 
     <nav class="header__linkContainer">
         @for (link of headerNavigationList$ | async; track link) {
-            <ng-container
-                    *ngTemplateOutlet="
-        linkTemplate;
-        context: { link, class: 'header__linkContainer__link' }
-      "
+            <ng-container *ngTemplateOutlet=" linkTemplate; context: { link, class: 'header__linkContainer__link' }"
             ></ng-container>
         }
 
-        <app-expand-input (isNgContentDisplayed)="isContentShowed = $event" >
+        <app-expand-input (isNgContentDisplayed)="isContentShowed = $event">
             <ng-container *ngIf="isContentShowed">
                 <input class="header__expand__input" type="text" (click)="changeService()"/>
                 <ng-container *ngIf="expandService.asd">
-                    <div class="header__expand__tagContainer"></div>
+                    <div class="header__expand__tagContainer tagContainer">
+                        <div class="tagContainer--leftBox">
+                            <ng-container *ngIf="(tags$ | async)?.length; else noTags">
+                                <h4 [style.font-weight]="400"
+                                    [style.color]="'#7F878C'"
+                                    [style.margin-bottom.px]="20"
+                                >{{ 'История' }}</h4>
+
+                                @for (tag of tags$ | async; track tag) {
+                                    <span [style.display]="'block'"
+                                          [style.color]="'var(--main_text_color)'"
+                                          [style.margin-bottom.px]="10">{{ tag }}</span>
+                                }
+                            </ng-container>
+                        </div>
+                        <div class="tagContainer--rightBox"></div>
+                    </div>
                 </ng-container>
             </ng-container>
         </app-expand-input>
@@ -29,7 +41,7 @@
         <button [ngStyle]="{'background-image': 'url(' + (userData$ | async)?.avatar_url + ')'}"
                 class="header__rightBox__account"></button>
     </div>
-</div>
+</header>
 
 <ng-template #linkTemplate let-linkItem="link" let-className="class">
     <li
@@ -42,4 +54,10 @@
     </li>
 </ng-template>
 
+<ng-template #noTags>
+    <h4 [style.font-weight]="400"
+        [style.color]="'#7F878C'"
+        [style.margin-bottom.px]="20"
+    >{{ 'История пуста' }}</h4>
+</ng-template>
 
