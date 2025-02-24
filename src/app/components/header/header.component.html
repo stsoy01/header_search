@@ -58,6 +58,7 @@
 
                             <div [style.display]="'inline-block'"
                                  [style.margin-right.px]="23"
+                                 [style.margin-left.px]="15"
                                  [style.color]="'var(--main_text_color)'">
                                 <input
                                         type="checkbox"
@@ -87,6 +88,7 @@
                             </div>
 
                             <div [style.display]="'inline-block'"
+                                 [style.margin-bottom.px]="20"
                                  [style.color]="'var(--main_text_color)'">
                                 <input
                                         type="checkbox"
@@ -98,6 +100,53 @@
                                          'margin-right': '12px'
                                          }">
                                 <span>{{ 'В заголовках' }}</span>
+                            </div>
+
+                            <span [style.display]="'block'"
+                                  [style.margin-bottom.px]="13"
+                                  [style.color]="'var(--main_text_color)'">{{ 'Только' }}</span>
+
+                            <div [style.display]="'inline-block'"
+                                 [style.margin-right.px]="23"
+                                 [style.margin-left.px]="15"
+                                 [style.color]="'var(--main_text_color)'">
+                                <input
+                                        type="checkbox"
+                                        [ngStyle]="{
+                                        'width': '18px',
+                                         'height': '18px',
+                                         'border': '1px solid #7F878C',
+                                         'vertical-align': 'text-bottom',
+                                         'margin-right': '12px'
+                                         }">
+                                <span>{{ 'Теги' }}</span>
+                            </div>
+                            <div [style.display]="'inline-block'"
+                                 [style.margin-right.px]="23"
+                                 [style.color]="'var(--main_text_color)'">
+                                <input
+                                        type="checkbox"
+                                        [ngStyle]="{
+                                        'width': '18px',
+                                         'height': '18px',
+                                         'border': '1px solid #7F878C',
+                                         'vertical-align': 'text-bottom',
+                                         'margin-right': '12px'
+                                         }">
+                                <span>{{ 'Просьбы' }}</span>
+                            </div>
+                            <div [style.display]="'inline-block'"
+                                 [style.color]="'var(--main_text_color)'">
+                                <input
+                                        type="checkbox"
+                                        [ngStyle]="{
+                                        'width': '18px',
+                                         'height': '18px',
+                                         'border': '1px solid #7F878C',
+                                         'vertical-align': 'text-bottom',
+                                         'margin-right': '12px'
+                                         }">
+                                <span>{{ 'Контакты' }}</span>
                             </div>
                         </div>
                     </div>

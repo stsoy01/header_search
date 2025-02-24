@@ -17,6 +17,7 @@ import {
 } from '@angular/common';
 import {ExpandInputComponent} from '../expand-input/expand-input.component';
 import {ExpandInputService} from "../expand-input/expand-input.service";
+import {FormsModule} from "@angular/forms";
 
 interface HeaderNavigationItemInterface {
     linkName: string;
@@ -43,6 +44,7 @@ interface UserDataInterface {
         NgStyle,
         ExpandInputComponent,
         NgIf,
+        FormsModule,
     ],
     templateUrl: './header.component.html',
     styleUrl: './header.component.scss',
@@ -108,6 +110,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
         if (event.keyCode === 13) {
             this.tagsSubject.next([...this.tagsSubject.value, event.target.value]);
+            event.currentTarget.value = '';
         }
     }
 }
