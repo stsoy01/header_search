@@ -1,0 +1,26 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+ul, li, ol {
+  list-style-type: none;
+}
+
+a:hover, button:hover {
+  cursor: pointer;
+}
+
+:root {
+  --header_bg_color: #1074CC;
+  --main_headerText_color: #fff;
+  --main_text_color: #2A3033;
+}
+
+[theme="dark"] {
+  --header_bg_color: #00294a;
+  --main_headerText_color: #b60000;
+  --main_text_color: rgba(236, 236, 236, 0.6);
+
+}
