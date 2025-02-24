@@ -5,7 +5,7 @@ import {Injectable} from "@angular/core";
 })
 
 export class ExpandInputService {
-    public asd = false;
+    public isExtended = false;
 
     constructor() {
     }

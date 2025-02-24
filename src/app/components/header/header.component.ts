@@ -1,10 +1,13 @@
 import {
     ChangeDetectionStrategy,
-    Component,
+    Component, OnDestroy,
     OnInit
 } from '@angular/core';
 import {RouterLink} from '@angular/router';
-import {Observable} from 'rxjs';
+import {
+    BehaviorSubject,
+    Observable
+} from 'rxjs';
 import {
     AsyncPipe,
     NgClass,
@@ -46,7 +49,7 @@ interface UserDataInterface {
     standalone: true,
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
     public headerNavigationList$: Observable<HeaderNavigationItemInterface[]> = new Observable((subscriber) => {
         subscriber.next(
@@ -59,34 +62,52 @@ export class HeaderComponent implements OnInit {
             ])
     })
 
-    public userData$: Observable<UserDataInterface> = new Observable((subscriber) => {
-        subscriber.next({
-            id: 1,
-            avatar_url: "/assets/img/avatar.png",
-            email: "j_ren@gmail.com",
-            first_name: "Jeremy",
-            is_block: false,
-            last_name: "Renner",
-            notification_count: 11
-        })
-    })
+    private userDataSubject = new BehaviorSubject<UserDataInterface>({
+        id: 1,
+        avatar_url: "/assets/img/avatar.png",
+        email: "j_ren@gmail.com",
+        first_name: "Jeremy",
+        is_block: false,
+        last_name: "Renner",
+        notification_count: 11
+    });
+    public userData$: Observable<UserDataInterface> = this.userDataSubject.asObservable();
 
-    public tags$: Observable<string[]> = new Observable((subscriber) => {
-        subscriber.next(
-            ['закре пить теги', 'кнопка', 'приложение', 'форма', 'тестовое поле', 'выпадающий список',]
-        )
-    })
+    private tagsSubject = new BehaviorSubject<string[]>(
+        [
+            'закрепить теги',
+            'кнопка',
+            'приложение',
+            'форма',
+            'тестовое поле',
+            'выпадающий список',
+        ]
+    );
+    public tags$: Observable<string[]> = this.tagsSubject.asObservable();
 
     constructor(public expandService: ExpandInputService) {
+
     }
 
     public isContentShowed: boolean = false;
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
+    }
+
+    public ngOnDestroy(): void {
+        this.tagsSubject.unsubscribe()
+        this.userDataSubject.unsubscribe()
     }
 
     public changeService(): void {
-        this.expandService.asd = true;
+        this.expandService.isExtended = true;
     }
 
+    public addNewTag(event: any): void {
+        if (!event?.target?.value) return
+
+        if (event.keyCode === 13) {
+            this.tagsSubject.next([...this.tagsSubject.value, event.target.value]);
+        }
+    }
 }

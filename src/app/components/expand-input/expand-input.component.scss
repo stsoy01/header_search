@@ -1,10 +1,11 @@
 .search {
   position: relative;
+  top: 22px;
+  right: -2px;
+  padding: 19px;
   width: 24px;
   height: 24px;
   background: 50% 50% no-repeat url("../../../assets/img/search.png");
-  right: 14px;
-  top: 23px;
 
   &:hover {
     cursor: pointer;
@@ -13,13 +14,13 @@
 
 .stub {
   position: absolute;
+  top: 17px;
+  right: 0;
   width: 0;
-  background: inherit;
   height: 48px;
-  top: 9px;
-  border-radius: 4px;
-  right: 15px;
   transition: 0.3s ease-out;
+  background: inherit;
+  border-radius: 4px;
   z-index: 1000;
   overflow: hidden;
   -webkit-box-shadow: 0 5px 17px 2px rgba(0, 0, 0, 0.05);
@@ -29,11 +30,11 @@
 
 
 .addBtn {
+  position: relative;
+  top: -18px;
+  right: -41px;
   width: 40px;
   height: 40px;
-  position: relative;
-  top: -9px;
-  right: -41px;
   background-repeat: no-repeat;
   background-color: inherit;
   background-position: 50%;

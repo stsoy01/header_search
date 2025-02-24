@@ -50,10 +50,10 @@ export class ExpandInputComponent implements OnDestroy {
         if (this.isInside) {
             this.isNgContentDisplayed.emit(this.isInside)
             this.renderer.setStyle(expandElement.nativeElement, 'width', '704px')
-            this.renderer.setStyle(expandElement.nativeElement, 'height', this.expandService.asd ? '278px' : '48px')
+            this.renderer.setStyle(expandElement.nativeElement, 'height', this.expandService.isExtended ? '278px' : '48px')
         } else {
-            this.expandService.asd = false;
-            this.renderer.setStyle(expandElement.nativeElement, 'height', this.expandService.asd ? '278px' : '48px')
+            this.expandService.isExtended = false;
+            this.renderer.setStyle(expandElement.nativeElement, 'height', this.expandService.isExtended ? '278px' : '48px')
             this.clearId = setTimeout(() => {
                 this.renderer.setStyle(expandElement.nativeElement, 'width', '0')
             }, 175)

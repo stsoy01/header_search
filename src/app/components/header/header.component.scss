@@ -36,9 +36,9 @@
 
     &__link {
       margin-right: 28px;
+      padding-left: 30px;
       background-repeat: no-repeat;
       background-size: contain;
-      padding-left: 30px;
     }
 
     [class~="header__linkContainer__link"]:last-of-type {
@@ -67,7 +67,7 @@
   .tagContainer {
     &--leftBox {
       width: 216px;
-      padding: 20px 16px 16px;
+      padding: 20px 16px 0 16px;
       overflow-y: scroll;
       scrollbar-width: none;
     }
@@ -75,11 +75,22 @@
     &--leftBox:after {
       content: "";
       position: absolute;
-      top: 0;
+      height: 30px;
       bottom: 0;
       left: -15px;
       right: -15px;
       box-shadow: inset white 0 -26px 24px;
+    }
+
+    &--rightBox {
+      width: 487px;
+      padding: 24px;
+      border-left: 1px solid #E1E4E6;
+      z-index: 1000;
+    }
+
+    &--rightBox input[type="checkbox"]:hover {
+      cursor: pointer;
     }
   }
 
@@ -94,18 +105,17 @@
       display: block;
       position: absolute;
       height: 16px;
-      background: red;
       top: 9px;
       right: 55px;
-      border-radius: 39%;
       padding: 4px;
-      font-size: 9px;
       text-align: center;
+      background: red;
+      border-radius: 39%;
+      font-size: 9px;
     }
 
     &__account {
       @include btnSettings;
     }
   }
-
 }

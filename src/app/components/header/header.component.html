@@ -1,16 +1,23 @@
-<header class="header">
+<div class="header">
     <a [routerLink]="''" class="header__mainLink"></a>
 
     <nav class="header__linkContainer">
         @for (link of headerNavigationList$ | async; track link) {
-            <ng-container *ngTemplateOutlet=" linkTemplate; context: { link, class: 'header__linkContainer__link' }"
+            <ng-container
+                    *ngTemplateOutlet="
+        linkTemplate;
+        context: { link, class: 'header__linkContainer__link' }"
             ></ng-container>
         }
 
         <app-expand-input (isNgContentDisplayed)="isContentShowed = $event">
             <ng-container *ngIf="isContentShowed">
-                <input class="header__expand__input" type="text" (click)="changeService()"/>
-                <ng-container *ngIf="expandService.asd">
+                <input
+                        type="text"
+                        class="header__expand__input"
+                        (keydown)="addNewTag($event)"
+                        (click)="changeService()"/>
+                <ng-container *ngIf="expandService.isExtended">
                     <div class="header__expand__tagContainer tagContainer">
                         <div class="tagContainer--leftBox">
                             <ng-container *ngIf="(tags$ | async)?.length; else noTags">
@@ -21,27 +28,97 @@
 
                                 @for (tag of tags$ | async; track tag) {
                                     <span [style.display]="'block'"
+                                          [style.text-overflow]="'ellipsis'"
+                                          [style.overflow]="'hidden'"
                                           [style.color]="'var(--main_text_color)'"
                                           [style.margin-bottom.px]="10">{{ tag }}</span>
                                 }
                             </ng-container>
                         </div>
-                        <div class="tagContainer--rightBox"></div>
+                        <div class="tagContainer--rightBox">
+                            <div [style.height.px]="48"
+                                 [style.margin-bottom.px]="16"
+                                 [style.position]="'relative'">
+                                <input type="text"
+                                       [style.border]="'1px solid #E1E4E6'"
+                                       [style.border-radius.px]="4"
+                                       [style.width.%]="100"
+                                       [style.outline]="'none'"
+                                       [style.padding]="'14px 16px'"
+                                       [style.height.%]="100">
+                                <span [ngStyle]="{
+                                'color': '#8C9499',
+                                'position': 'absolute',
+                                'left': '12px',
+                                'top': '-10px',
+                                'padding': '0 4px',
+                                'background': '#fff',
+                                }">{{ 'Автор' }}</span>
+                            </div>
+
+                            <div [style.display]="'inline-block'"
+                                 [style.margin-right.px]="23"
+                                 [style.color]="'var(--main_text_color)'">
+                                <input
+                                        type="checkbox"
+                                        [ngStyle]="{
+                                        'width': '18px',
+                                         'height': '18px',
+                                         'border': '1px solid #7F878C',
+                                         'vertical-align': 'text-bottom',
+                                         'margin-right': '12px'
+                                         }">
+                                <span>{{ 'Я участник' }}</span>
+                            </div>
+
+                            <div [style.display]="'inline-block'"
+                                 [style.margin-right.px]="23"
+                                 [style.color]="'var(--main_text_color)'">
+                                <input
+                                        type="checkbox"
+                                        [ngStyle]="{
+                                        'width': '18px',
+                                         'height': '18px',
+                                         'border': '1px solid #7F878C',
+                                         'vertical-align': 'text-bottom',
+                                         'margin-right': '12px'
+                                         }">
+                                <span>{{ 'Строгий поиск' }}</span>
+                            </div>
+
+                            <div [style.display]="'inline-block'"
+                                 [style.color]="'var(--main_text_color)'">
+                                <input
+                                        type="checkbox"
+                                        [ngStyle]="{
+                                        'width': '18px',
+                                         'height': '18px',
+                                         'border': '1px solid #7F878C',
+                                         'vertical-align': 'text-bottom',
+                                         'margin-right': '12px'
+                                         }">
+                                <span>{{ 'В заголовках' }}</span>
+                            </div>
+                        </div>
                     </div>
                 </ng-container>
             </ng-container>
         </app-expand-input>
-
-
     </nav>
 
     <div class="header__rightBox">
         <button class="header__rightBox__notification"></button>
-        <span *ngIf="(userData$ | async)?.notification_count">{{ (userData$ | async)?.notification_count }}</span>
-        <button [ngStyle]="{'background-image': 'url(' + (userData$ | async)?.avatar_url + ')'}"
-                class="header__rightBox__account"></button>
+
+        <span
+                *ngIf="(userData$ | async)?.notification_count"
+        >{{ (userData$ | async)?.notification_count }}</span>
+
+        <button
+                [ngStyle]="{'background-image': 'url(' + (userData$ | async)?.avatar_url + ')'}"
+                class="header__rightBox__account"
+        ></button>
     </div>
-</header>
+</div>
 
 <ng-template #linkTemplate let-linkItem="link" let-className="class">
     <li
@@ -60,4 +137,3 @@
         [style.margin-bottom.px]="20"
     >{{ 'История пуста' }}</h4>
 </ng-template>
-
